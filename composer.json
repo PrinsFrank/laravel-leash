@@ -1,0 +1,12 @@
+{
+    "name": "prinsfrank/laravel-leash",
+    "description": "Prevents Laravel from straying when testing your application",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PrinsFrank\\LaravelLeash\\": "src/"
+        }
+    },
+    "require": {}
+}
