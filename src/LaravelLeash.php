@@ -3,16 +3,15 @@ declare(strict_types=1);
 
 namespace PrinsFrank\LaravelLeash;
 
-use Illuminate\Container\Container;
 use PrinsFrank\LaravelLeash\Container\LeashedContainer;
 
 class LaravelLeash
 {
     private static bool $isLeashed = false;
 
-    public function bootstrap(bool $leash = true): void
+    public static function bootstrap(bool $leash = true): void
     {
-        Container::setInstance(LeashedContainer::getInstance());
+        LeashedContainer::setInstance(LeashedContainer::getLeashedInstance());
 
         static::leash($leash);
     }

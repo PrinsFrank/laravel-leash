@@ -5,4 +5,6 @@ namespace PrinsFrank\LaravelLeash\Exception;
 
 use Exception;
 
-abstract class LaravelLeashException extends Exception { }
+abstract class LaravelLeashException extends Exception
+{
+}
