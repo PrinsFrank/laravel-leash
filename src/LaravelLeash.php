@@ -8,15 +8,17 @@ use PrinsFrank\LaravelLeash\Container\LeashedContainer;
 
 class LaravelLeash
 {
-    private static bool $isLeashed = false;
+    protected static bool $isLeashed = false;
 
-    public static function bootstrap(bool $leash = true): void
+    protected static OnLeashedContainer $onLeashedContainer;
+
+    public static function bootstrap(?OnLeashedContainer $onLeashedContainer = null): void
     {
         if (static::isBootStrapped() === false) {
             LeashedContainer::setInstance(LeashedContainer::getLeashedInstance());
         }
 
-        static::leash($leash);
+        static::$onLeashedContainer = $onLeashedContainer ?? new ThrowOperationNotAllowedException();
     }
 
     public static function isBootStrapped(): bool
@@ -37,5 +39,12 @@ class LaravelLeash
     public static function unLeash(): void
     {
         static::leash(false);
+    }
+
+    public static function onContainerCall(string $methodName, array $args): void
+    {
+        if (static::isLeashed()) {
+            (static::$onLeashedContainer)($methodName, $args);
+        }
     }
 }
