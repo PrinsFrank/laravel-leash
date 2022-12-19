@@ -10,7 +10,7 @@ use PrinsFrank\LaravelLeash\LaravelLeash;
 
 class LeashedContainer extends Container
 {
-    protected static LeashedContainer $leashedInstance;
+    protected static ?LeashedContainer $leashedInstance = null;
 
     public static function getLeashedInstance(): LeashedContainer
     {
